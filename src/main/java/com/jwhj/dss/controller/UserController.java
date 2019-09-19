@@ -126,17 +126,17 @@ public class UserController {
         try {
             tx.begin();
             User Update_user = em.find(User.class, user.getId());
-            if(!"".equals(user.getEmail())){
+            if(!(user.getEmail() == null)){
                 Update_user.setEmail(user.getEmail());
             }
-            if(!"".equals(user.getPassword())){
-                Update_user.setEmail(user.getPassword());
+            if(!(user.getPassword() == null)){
+                Update_user.setPassword(user.getPassword());
             }
-            if(!"".equals(user.getNickname())){
-                Update_user.setEmail(user.getNickname());
+            if(!(user.getNickname() == null)){
+                Update_user.setNickname(user.getNickname());
             }
-            if(!"".equals(user.getBirth())){
-                Update_user.setEmail(user.getBirth());
+            if(!(user.getBirth() == null)){
+                Update_user.setBirth(user.getBirth());
             }
             tx.commit();
 //            userService.updateUser(user);
