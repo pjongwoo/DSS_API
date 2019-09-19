@@ -1,7 +1,9 @@
 package com.jwhj.dss.data;
 
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -22,6 +24,7 @@ public class User {
     private String password;
     private String nickname;
     private String birth;
+    private String lock_yn;
 
     @CreationTimestamp
     @Column(updatable=false)
@@ -30,12 +33,13 @@ public class User {
     @UpdateTimestamp
     private Timestamp update_date;
 
-    public User(String id, String password, String nickname, String email, String birth){
+    public User(String id, String password, String nickname, String email, String birth, String lock_yn){
         this.id = id;
         this.password = password;
         this.nickname = nickname;
         this.email = email;
         this.birth = birth;
+        this.lock_yn = lock_yn;
     }
 
     public User() {

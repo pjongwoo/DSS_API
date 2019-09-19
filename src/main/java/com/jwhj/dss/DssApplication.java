@@ -48,7 +48,7 @@ public class DssApplication {
 //        member2.setTeam(team1);
 //        em.persist(member2);
 //
-        User user = new User("test4", "test4", "테스트1", "test1@abc.com" , "1992-08-21");
+        User user = new User("test4", "test4", "테스트1", "test1@abc.com" , "1992-08-21", "Y");
         em.persist(user);
         Prescription pre = new Prescription("종우약국","3","2", "2019-06-01");
         pre.setUser(user);
