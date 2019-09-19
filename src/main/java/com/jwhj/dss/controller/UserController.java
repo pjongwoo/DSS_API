@@ -94,7 +94,7 @@ public class UserController {
                 mail.setSubject("페이지 회원가입 인증 메일");
                 mail.setText(new StringBuffer().append("<h1>회원가입 인증메일입니다.</h1>")
                         .append("<p>밑의 링크를 클릭하면 메일이 인증 됩니다.</p>")
-                        .append("<a href='http://http://211.239.124.237:19613/user/auth/"+user.getId()+"/")
+                        .append("<a href='http://211.239.124.237:19613/user/auth/"+user.getId())
                         .append("/"+authKey+"' target='_blank'>메일 인증 링크</a>")
                         .toString()
                 );
@@ -125,7 +125,19 @@ public class UserController {
 
         try {
             tx.begin();
-            em.persist(user);
+            User Update_user = em.find(User.class, user.getId());
+            if(!"".equals(user.getEmail())){
+                Update_user.setEmail(user.getEmail());
+            }
+            if(!"".equals(user.getPassword())){
+                Update_user.setEmail(user.getPassword());
+            }
+            if(!"".equals(user.getNickname())){
+                Update_user.setEmail(user.getNickname());
+            }
+            if(!"".equals(user.getBirth())){
+                Update_user.setEmail(user.getBirth());
+            }
             tx.commit();
 //            userService.updateUser(user);
         } catch(Exception ex){
@@ -156,7 +168,7 @@ public class UserController {
 
 
     @CrossOrigin(origins = "http://frontenddssreact.org.s3-website.ap-northeast-2.amazonaws.com")
-    @RequestMapping(value = "/auth/{id}/{authkey}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/auth/{id}/{authkey}", method = RequestMethod.GET)
     @ApiOperation(value = "사용자 회원가입 인증처리", notes = "회원가입한 사용자의 이메일로 인증처리를 하는 API")
     public ResponseEntity<ApiResponseMessage> authUser( @PathVariable("id") String id, @PathVariable("authkey") String authkey ){
         ApiResponseMessage message = new ApiResponseMessage("Success", "인증완료되었습니다.", "", "");
